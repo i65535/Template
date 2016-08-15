@@ -1,0 +1,10 @@
+
+*.log
+*.prefs
+*.git
+.buildpath
+.project
+.pydevproject
+.settings
+
+/src/Application/Runtime/Cache/*.html
