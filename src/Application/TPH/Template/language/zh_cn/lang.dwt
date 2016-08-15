@@ -1,0 +1,39 @@
+
+$_LANG['list'] = '列表';{$enter}
+$_LANG['edit'] = '编辑';{$enter}
+$_LANG['remove'] = '删除';{$enter}
+$_LANG['add'] = '新增';{$enter}
+$_LANG['goback'] = '返回';{$enter}
+$_LANG['add_success'] = '创建成功';{$enter}
+$_LANG['add_fail'] = '创建失败';{$enter}
+$_LANG['edit_fail'] = '编辑失败';{$enter}
+$_LANG['edit_succee'] = '编辑成功';{$enter}
+$_LANG['invalid_param'] = '非法的访问';{$enter}
+$_LANG['keyword'] = '关键字';
+
+<if condition="! empty($has_text_filed)">
+$_LANG['tab_general'] = '简要信息';{$enter}
+$_LANG['tab_content'] = '详细信息';{$enter}
+</if>
+
+<foreach name="tableInfoArray" item="tableInfo">
+<if condition="empty($tableInfo['column_comment'])">
+$_LANG['{$tableInfo.column_name}'] = '{$tableInfo.column_name}';{$enter}
+<else />
+$_LANG['{$tableInfo.column_name}'] = '{$tableInfo.column_comment}';{$enter}
+</if>
+</foreach>
+
+
+<foreach name="tableInfoArray" item="tableInfo">
+<if condition="($tableInfo.column_type eq 'int(1)' or $tableInfo.column_type eq 'tinyint(1)')">
+$_LANG['{$tableInfo.column_name}_yes'] = '是';{$enter}
+$_LANG['{$tableInfo.column_name}_no'] = '否';{$enter}
+</if>
+</foreach>
+
+
+
+
+$_LANG['js_languages']['remove_confirm'] = '确定删除这个活动吗？';
+

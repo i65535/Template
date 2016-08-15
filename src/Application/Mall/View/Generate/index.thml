@@ -1,0 +1,9 @@
+<html>
+<body>
+ <form action="{url('index')}" method="post">
+  数据表名：<input type="text" name="table_name" ><br>
+             <input type="submit" value="提交">
+ </form>
+
+</body>
+</html>

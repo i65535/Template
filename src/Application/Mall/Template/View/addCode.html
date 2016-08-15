@@ -1,0 +1,35 @@
+<literal><</literal>layout name="add_layout" /<literal>></literal>
+<div class="crumb-wrap">
+    <div class="crumb-list">
+        <i class="icon-font"></i>
+        <a href="/admin">首页</a><span class="crumb-step">&gt;</span>
+        <a class="crumb-name" href="<literal>{:U('index')}</literal>"><literal>{$ur_here}</literal></a><span class="crumb-step">&gt;</span><span><literal>{:L('add')}</literal></span>
+    </div>
+</div>
+<div class="result-wrap">
+    <div class="result-content">
+        <form action="" method="post" id="myform" name="myform" enctype="multipart/form-data">
+            <table class="insert-tab" width="100%">
+                <tbody>
+                <foreach  name="tableInfoArray" item="tableInfo">
+                    <if condition="($tableInfo.column_name neq $ID)">{$enter}
+                    <tr>
+                        <th width="150"><i class="require-red">*</i><literal>{</literal>:L('{$tableInfo.column_name}')}:</th>
+                        <td>
+                            <input class="common-text required" id="title" name="data[{$tableInfo.column_name}]" size="50" value="" type="text">
+                        </td>
+                    </tr>{$enter}
+                    </if>
+                </foreach>
+                    <tr>
+                        <th></th>
+                        <td>
+                            <input class="btn btn-primary btn6 mr10" value="<literal>{:L('button_submit')}</literal>" type="submit">
+                            <input class="btn btn6" onclick="history.go(-1)" value="<literal>{:L('button_return')}</literal>" type="button">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </form>
+    </div>
+</div>

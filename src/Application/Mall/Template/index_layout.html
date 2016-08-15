@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>管理员列表——后台管理</title>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/common.css"/>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/main.css"/>
+	<script type="text/javascript" src="__PUBLIC__/js/libs/modernizr.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/jquery-1.4.2.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/utils.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/transport.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/js/listtable.js"></script>
+	<script language="javascript" type="text/javascript" src="__PUBLIC__/js/My97DatePicker/WdatePicker.js"></script>
+	<script language="JavaScript">
+		<literal>
+		listTable.recordCount = {if $record_count}{$record_count}{else}0{/if};
+		listTable.pageCount = {if $page}{$page['page_count']}{else}0{/if};
+
+		{loop $filter $key $item}
+		listTable.filter.{$key} = '{$item}';
+		{/loop}
+		
+		onload = function()
+		{
+			listTable.url = "{U('operate')}";
+			listTable.query = "query";
+		}
+		</literal>
+
+		/**
+		 * 搜索订单
+		 */
+		function searchData()
+		{
+			listTable.filter['keyword'] = Utils.trim(document.forms['searchForm'].elements['keyword'].value);
+			listTable.filter['start_date'] = Utils.trim(document.forms['searchForm'].elements['start_date'].value);
+			listTable.filter['end_date'] = Utils.trim(document.forms['searchForm'].elements['end_date'].value);
+			listTable.filter['page'] = 1;
+			listTable.loadList();
+		}
+	</script>
+</head>
+<body>
+<include file="Common/top" /> 
+<div class="container clearfix">
+	<div class="sidebar-wrap">
+		<div class="sidebar-title">
+			<h1>菜单</h1>
+		</div>
+		<include file="Common/left" />
+	<!--/sidebar-->
+	<div class="main-wrap">
+		{__CONTENT__}
+	</div>
+	<!--/main-->
+</div>
+</body>
+
+
+</html>

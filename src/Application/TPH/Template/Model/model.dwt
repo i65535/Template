@@ -1,0 +1,39 @@
+
+
+/* 访问控制 */
+defined('ENTRANCE') or die('Deny Access');
+
+class {$model_name}Model extends BaseModel {
+	protected $table = '{$tableName} AS T ';
+	protected $table_name = '';
+	
+	public function __construct(){
+		parent::__construct();
+		$this->table_name = $this->pre . $this->table;
+	}
+	
+	function get_{$tableName}_list($filter, $offset='0,12'){
+	    $sql = 'select T.* from ' . $this->table_name;
+
+	    if(!empty($filter['where'])){
+	        $sql .= ' WHERE ' . $filter['where'];
+	    }
+	    if(!empty($filter['sort_by'])){
+	        $sql .= ' ORDER BY ' . $filter['sort_by'] . ' ' . $filter['sort_order'];
+	    }
+	    
+	    $sql .= " limit $offset";
+
+	    $res = $this->query($sql);
+        /*
+	    foreach ($res as $key=>$row){
+	        $res[$key]['start_time'] = date(C('date_format'), $row['start_time']);
+	        $res[$key]['end_time']   = date(C('date_format'), $row['end_time']);
+	    }*/
+	    return $res;
+	}
+	
+	function {$tableName}_detail($id){
+		return $this->row('select T.* from ' . $this->table_name . " where T.{$ID}='$id'");
+	}
+}

@@ -1,0 +1,60 @@
+{include file="pageheader"}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title"><literal>{$ur_here}</literal></h3>
+    </div>
+    <div class="panel-body">
+        <ul class="nav nav-tabs" role="tablist" id="myTab">
+            <li class="active"><a href="#general" role="tab" data-toggle="tab"><literal>{$lang['tab_general']}</literal></a></li>
+            <li><a href="#detail" role="tab" data-toggle="tab"><literal>{$lang['tab_content']}</literal></a></li>
+        </ul>
+        <form action="{url('insert')}" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">        
+        <div class="tab-content">
+            <div class="tab-pane active" id="general">
+                <table id="general-table" class="table table-hover ectouch-table">
+
+                <foreach  name="tableInfoArray" item="tableInfo">
+                    <if condition="($tableInfo.column_name neq $ID)">
+                    <tr>
+                        <td width="200"><literal>{$lang</literal>['{$tableInfo.column_name}']}:</td>
+                        <td><div class="col-md-4">
+                            <if condition="($tableInfo.column_type eq 'int(1)' or $tableInfo.column_type eq 'tinyint(1)')">
+                                <div class="btn-group" data-toggle="buttons">
+                                    <label class="btn btn-primary btn-sm active">
+                                        <input type="radio" name="data[{$tableInfo.column_name}]" value="1" checked><literal>{</literal>$lang['{$tableInfo.column_name}_yes']}
+                                    </label>
+                                    <label class="btn btn-primary btn-sm">
+                                        <input type="radio" name="data[{$tableInfo.column_name}]" value="0"><literal>{</literal>$lang['{$tableInfo.column_name}_no']} 
+                                    </label>
+                                </div>{$enter}
+                            <else/>
+                            <input type='text' name='data[{$tableInfo.column_name}]' maxlength="20" value="" class="form-control input-sm" />{$enter}
+                            </if>
+                        </div></td>
+                    </tr>{$enter}{$tab_4}
+                    </if>
+                </foreach>
+                </table>
+            </div>
+            <div class="tab-pane" id="detail">
+                <table width="90%" id="detail-table">
+                    <tr>
+                        <td><div class="col-md-9"> 
+                            <script id="container" name="content" type="text/plain" style="width:810px; height:360px;">{$info['content']}</script> 
+                        </div></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="button-div">
+            <input type="submit" value="<literal>{$lang['button_submit']}</literal>" class="btn btn-primary"  />
+            <input type="reset" value="<literal>{$lang['button_reset']}</literal>" class="btn btn-default" />
+        </div>
+        </form>
+    </div>
+</div>
+<!--script type="text/javascript" src="--PUBLIC--/js/region.js"></script> 
+<script type="text/javascript" src="--PUBLIC--/ueditor/ueditor.config.js"></script>
+<script type="text/javascript" src="--PUBLIC--/ueditor/ueditor.all.min.js"></script>
+<script type="text/javascript">var ue = UE.getEditor('container');</script-->
+{include file="pagefooter"}
