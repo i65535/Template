@@ -33,23 +33,22 @@
 				<literal><volist name="list" id="vo"></literal>
 				<tr>
 					<td class="tc">
-						<input name="ids[]" value="<literal>{$vo.id}</literal>" class="check" type="checkbox">
+						<input name="ids[]" value="<literal>$vo['id']</literal>" class="check" type="checkbox">
 					</td>
-					<literal><foreach name="tableInfoArray" item="tableInfo"></literal>
-					<td><literal>{$vo.id}</literal></td>
-					<td class="text-center"><span onclick="javascript:listTable.edit(this, 'edit_{$tableInfo.column_name}', <literal>{</literal>$vo['{$ID}']})"><literal>{$vo[</literal>'{$tableInfo.column_name}']}</span></td>{$enter}
-					<literal></foreach></literal>
-					<td>
-						<a class="link-update" href="{:U('edit', array('id'=>$vo.id))}"><literal>{:L('edit')}</literal></a>
-						<a class="link-del" onclick="return confirm('<literal>{:L('remove_confirm')}</literal>');" href="{:U('del', array('id'=>$vo.id))}"><literal>{:L('remove')}</literal></a>
-					</td>
+					<foreach name="tableInfoArray" item="tableInfo">{$enter}
+					<td><center><span onclick="javascript:listTable.edit(this, 'edit_{$tableInfo.column_name}', <literal>{</literal>$vo['{$ID}']})"><literal>{$vo[</literal>'{$tableInfo.column_name}']}</span></center></td>{$enter}
+					</foreach>
+					<td><center>
+						<a class="link-update" href="<literal>{:U('edit', array('id'=>$vo['id']))}</literal>"><literal>{:L('edit')}</literal></a>
+						<a class="link-del" onclick="return confirm('<literal>{:L('remove_confirm')}</literal>');" href="<literal>{:U('del', array('id'=>$vo['id']))}</literal>"><literal>{:L('remove')}</literal></a>
+					</center></td>
 				</tr>
 				<literal></volist></literal>
 			</table>
 <literal><if condition="$full_page"></literal>
 			<literal><</literal>include file="Common/page" />
 		</div>
-		<div>
+		<div class="list_act_div">
 			<a href="<literal>{:U('add')}</literal>" class="btn btn-primary btn2"><i class="icon-font"></i><literal>{:L('add')}</literal></a>
 			<input name="remove" type="submit" id="btnSubmit" value="<literal>{:L('remove')}</literal>" class="btn btn-default" disabled="true" onclick="this.form.target = '_self'" />
 			<input name="batch" type="hidden" value="1" />

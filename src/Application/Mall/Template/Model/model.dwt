@@ -9,12 +9,20 @@ class {$model_name}Model extends Model {
 	protected $trueTableName = '';
 	protected $table = '';
 
+	/*
 	protected $_validate = array(
 		array('username','require','管理员名称不得为空！',1),  // 都有时间都验证
 		array('username','','管理员名称不得重复！',1,unique,1), 
 		array('username','','管理员名称不得重复！',1,unique,2),
 		array('password','require','管理员密码不得为空！',1),
 		array('verify','verify','验证码错误！',1,'callback',4),
+	);
+	*/
+
+	protected $_validate = array({$enter}
+	<foreach name="tableInfoArray" item="tableInfo">{$enter}
+		//array('{$tableInfo.column_name}', 'require', '<literal>{%</literal>{$tableInfo.column_name}_validate}', 2),{$enter}
+	</foreach>
 	);
 	
 	public function __construct(){
@@ -45,6 +53,10 @@ class {$model_name}Model extends Model {
 	}
 	
 	function {$tableName}_detail($id){
-		return $this->row('select T.* from ' . $this->table_name . " where T.{$ID}='$id'");
+		$res = $this->query('select * from ' . $this->trueTableName . " where {$ID}='$id'");
+		if (is_array($res)){
+			return $res[0];
+		}
+		return FALSE;
 	}
 }

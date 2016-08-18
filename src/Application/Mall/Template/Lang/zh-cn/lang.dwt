@@ -27,6 +27,14 @@ return array(
 	</foreach>
 
 	<foreach name="tableInfoArray" item="tableInfo">
+	<if condition="empty($tableInfo['column_comment'])">
+	'{$tableInfo.column_name}_validate' => '{$tableInfo.column_name}',
+	<else />
+	'{$tableInfo.column_name}_validate' => '{$tableInfo.column_comment}',
+	</if>
+	</foreach>
+
+	<foreach name="tableInfoArray" item="tableInfo">
 	<if condition="($tableInfo.column_type eq 'int(1)' or $tableInfo.column_type eq 'tinyint(1)')">
 	'{$tableInfo.column_name}_yes' => '是',
 	'{$tableInfo.column_name}_no' => '否',
