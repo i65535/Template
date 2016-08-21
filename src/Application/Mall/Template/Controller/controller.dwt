@@ -1,5 +1,4 @@
 namespace Admin\Controller;
-use Think\Controller;
 
 class {$model_name}Controller extends CommonController {
     function __construct(){
