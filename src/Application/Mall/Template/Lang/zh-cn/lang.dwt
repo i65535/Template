@@ -41,8 +41,6 @@ return array(
 	</if>
 	</foreach>
 
-	'js_languages' => array(
-		'remove_confirm' => '确定删除这个活动吗？',
-	)
+	'remove_confirm' => '确定删除这个活动吗？',
 
 );

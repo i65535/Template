@@ -28,19 +28,19 @@
 					<foreach name="tableInfoArray" item="tableInfo">{$enter}
 					<th><center><a href="javascript:listTable.sort('{$tableInfo.column_name }'); "><literal>{</literal>:L('{$tableInfo.column_name}')}</a></center></th>{$enter}
 					</foreach>
-					<th>操作</th>
+					<th><center>操作</center></th>
 				</tr>
 				<literal><volist name="list" id="vo"></literal>
 				<tr>
 					<td class="tc">
-						<input name="ids[]" value="<literal>$vo['id']</literal>" class="check" type="checkbox">
+						<input name="ids[]" value="$vo['{$ID}']" class="check" type="checkbox">
 					</td>
 					<foreach name="tableInfoArray" item="tableInfo">{$enter}
 					<td><center><span onclick="javascript:listTable.edit(this, 'edit_{$tableInfo.column_name}', <literal>{</literal>$vo['{$ID}']})"><literal>{$vo[</literal>'{$tableInfo.column_name}']}</span></center></td>{$enter}
 					</foreach>
 					<td><center>
-						<a class="link-update" href="<literal>{:U('edit', array('id'=>$vo['id']))}</literal>"><literal>{:L('edit')}</literal></a>
-						<a class="link-del" onclick="return confirm('<literal>{:L('remove_confirm')}</literal>');" href="<literal>{:U('del', array('id'=>$vo['id']))}</literal>"><literal>{:L('remove')}</literal></a>
+						<a class="link-update" href="<literal>{</literal>:U('edit', array('id'=>$vo['{$ID}']))}"><literal>{:L('edit')}</literal></a>
+						<a class="link-del" onclick="return confirm('<literal>{:L('remove_confirm')}</literal>');" href="<literal>{</literal>:U('del', array('id'=>$vo['{$ID}']))}"><literal>{:L('remove')}</literal></a>
 					</center></td>
 				</tr>
 				<literal></volist></literal>

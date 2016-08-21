@@ -1,54 +1,65 @@
 <literal><</literal>layout name="tab_edit_layout" /<literal>></literal>
 <div class="crumb-wrap">
-	<div class="crumb-list">
-		<i class="icon-font"></i>
-		<a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span>
-		<a class="crumb-name" href="<literal>{:U('index')}</literal>"><literal>{$ur_here}</literal></a><span class="crumb-step">&gt;</span><span><literal>{:L('edit')}</literal></span>
-	</div>
+    <div class="crumb-list">
+        <i class="icon-font"></i>
+        <a href="/jscss/admin/design/">首页</a><span class="crumb-step">&gt;</span>
+        <a class="crumb-name" href="<literal>{:U('index')}</literal>"><literal>{$ur_here}</literal></a><span class="crumb-step">&gt;</span><span><literal>{:L('edit')}</literal></span>
+    </div>
 </div>
 <div class="result-wrap">
-	<div class="result-content">
-		<ul class="nav nav-tabs" role="tablist" id="myTab">
-			<li class="active"><a href="#general" role="tab" data-toggle="tab"><literal>{:L('tab_general')}</literal></a></li>
-			<li><a href="#detail" role="tab" data-toggle="tab"><literal>{:L('tab_content')}</literal></a></li>
-		</ul>
+    <div class="result-content">
+        <ul class="nav nav-tabs" role="tablist" id="myTab" style="height:40px;">
+            <li class="active"><a href="#general" role="tab" data-toggle="tab"><literal>{:L('tab_general')}</literal></a></li>
+            <li><a href="#detail" role="tab" data-toggle="tab"><literal>{:L('tab_content')}</literal></a></li>
+        </ul>
 
 
-		<form action="<literal>{:U('update')}</literal>" method="post" id="myform" name="myform" enctype="multipart/form-data">
-		<div class="tab-content">
-			<div class="tab-pane active" id="general">
-				<table class="insert-tab" width="100%">
-					<tbody>
+        <form action="<literal>{:U('update')}</literal>" method="post" id="myform" name="myform" enctype="multipart/form-data">
+        <div class="tab-content">
+            <div class="tab-pane active" id="general">
+                <table class="insert-tab" width="100%">
+                    <tbody>
 <foreach  name="tableInfoArray" item="tableInfo">
 <if condition="($tableInfo.column_name neq $ID)">{$enter}
-						<tr>
-							<th width="150"><i class="require-red">*</i><literal>{</literal>:L('{$tableInfo.column_name}')}:</th>
-							<td>
-								<input class="common-text required" id="title" name="data[{$tableInfo.column_name}]" size="50" value="<literal>{$info[</literal>'{$tableInfo.column_name}']}" type="text">
-							</td>
-						</tr>{$enter}
+                        <tr>
+                            <th width="150"><i class="require-red">*</i><literal>{</literal>:L('{$tableInfo.column_name}')}:</th>
+                            <td>
+                                <if condition="($tableInfo.column_type eq 'int(1)' or $tableInfo.column_type eq 'tinyint(1)')">{$enter}
+                                    <div class="make-switch" data-on="primary" data-off="info" data-on-label="<literal>{</literal>:L('{$tableInfo.column_name}_yes')}" data-off-label="<literal>{</literal>:L('{$tableInfo.column_name}_no')}" >
+                                        <input name="data[{$tableInfo.column_name}]" type="checkbox" <literal><</literal>notempty name="info['{$tableInfo.column_name}']">checked</empty> />
+                                    </div>{$enter}
+                                <else/>{$enter}
+                                <input class="input-sm" name="data[{$tableInfo.column_name}]" maxlength="20" size="50" value="<literal>{$info[</literal>'{$tableInfo.column_name}']}" type="text" />{$enter}
+                                </if>
+                            </td>
+                        </tr>{$enter}
 </if>
 </foreach>
-						<tr>
-							<th></th>
-							<td>
-								<input type="hidden" name="{$ID}" value="<literal>{$info</literal>['{$ID}']}" />
-								<input class="btn btn-primary btn6 mr10" value="<literal>{:L('button_submit')}</literal>" type="submit">
-								<input class="btn btn6" onclick="history.go(-1)" value="<literal>{:L('button_return')}</literal>" type="button">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="tab-pane" id="detail">
-				<table class="insert-tab" width="90%" id="detail-table">
-					<tr>
-						<td><div class="col-md-9"> 
-							<script id="rich_text_area" name="content" type="text/plain" style="width:810px; height:360px;"><literal>{$info['content']}</literal></script> 
-						</div></td>
-					</tr>
-				</table>
-			</div>
-		</form>
-	</div>
+                        <tr>
+                            <th></th>
+                            <td>
+                                <input type="hidden" name="{$ID}" value="<literal>{$info</literal>['{$ID}']}" />
+                                <input class="btn btn-primary btn6 mr10" value="<literal>{:L('button_submit')}</literal>" type="submit">
+                                <input class="btn btn6" onclick="history.go(-1)" value="<literal>{:L('button_return')}</literal>" type="button">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="tab-pane" id="detail">
+                <table class="table table-hover" width="90%" id="detail-table">
+                    <tr>
+                        <td><div class="col-md-9"> 
+                            <script id="rich_text_area" name="content" type="text/plain" style="width:810px; height:360px;"><literal>{$info['content']}</literal></script> 
+                        </div></td>
+                    </tr>
+                </table>
+            </div>
+            <div class="button-div">
+                <input type="hidden" name="{$ID}" value="<literal>{$info</literal>['{$ID}']}" />
+                <input class="btn btn-primary btn6 mr10" value="<literal>{:L('button_submit')}</literal>" type="submit">
+                <input class="btn btn6" onclick="history.go(-1)" value="<literal>{:L('button_return')}</literal>" type="button">
+            </div>
+        </form>
+    </div>
 </div>

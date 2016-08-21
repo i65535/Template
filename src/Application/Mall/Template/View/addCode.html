@@ -16,7 +16,13 @@
                     <tr>
                         <th width="150"><i class="require-red">*</i><literal>{</literal>:L('{$tableInfo.column_name}')}:</th>
                         <td>
-                            <input class="common-text required" id="title" name="data[{$tableInfo.column_name}]" size="50" value="" type="text">
+                            <if condition="($tableInfo.column_type eq 'int(1)' or $tableInfo.column_type eq 'tinyint(1)')">
+                                <div class="make-switch" data-on="primary" data-off="info" data-on-label="<literal>{</literal>:L('{$tableInfo.column_name}_yes')}" data-off-label="<literal>{</literal>:L('{$tableInfo.column_name}_no')}" >
+		                            <input name="data[{$tableInfo.column_name}]" type="checkbox" checked>
+		                        </div>{$enter}
+                            <else/>
+                            <input class="input-sm" name="data[{$tableInfo.column_name}]" maxlength="20" size="50" value="" type="text" />{$enter}
+                            </if>
                         </td>
                     </tr>{$enter}
                     </if>
