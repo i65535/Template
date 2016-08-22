@@ -26,7 +26,7 @@
                             <td>
                                 <if condition="($tableInfo.column_type eq 'int(1)' or $tableInfo.column_type eq 'tinyint(1)')">{$enter}
                                     <div class="make-switch" data-on="primary" data-off="info" data-on-label="<literal>{</literal>:L('{$tableInfo.column_name}_yes')}" data-off-label="<literal>{</literal>:L('{$tableInfo.column_name}_no')}" >
-                                        <input name="data[{$tableInfo.column_name}]" type="checkbox" <literal><</literal>notempty name="info['{$tableInfo.column_name}']">checked</empty> />
+                                        <input name="data[{$tableInfo.column_name}]" type="checkbox" <literal><</literal>notempty name="info['{$tableInfo.column_name}']">checked</notempty> />
                                     </div>{$enter}
                                 <else/>{$enter}
                                 <input class="input-sm" name="data[{$tableInfo.column_name}]" maxlength="20" size="50" value="<literal>{$info[</literal>'{$tableInfo.column_name}']}" type="text" />{$enter}
