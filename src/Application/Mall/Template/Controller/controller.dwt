@@ -142,7 +142,7 @@ class {$model_name}Controller extends CommonController {
         $sort_flag  = sort_flag($filter);
         $this->assign($sort_flag['tag'], $sort_flag['img']);
         
-        make_json_result($this->display('{$tableName}_index', true), '', array('filter' => $filter['page']));
+        make_json_result($this->fetch('fetch'), '', array('filter' => $filter['page']));
     }
 
     public function operate(){

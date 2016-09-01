@@ -4,19 +4,7 @@
 <div class="crumb-wrap">
 	<div class="crumb-list"><i class="icon-font"></i><a href="/admin">首页</a><span class="crumb-step">&gt;</span><span class="crumb-name"><literal>{$ur_here}</literal></span></div>
 </div>
-<div class="search-wrap">
-	<div class="search-content">
-		<form action="" method="post">
-			<table class="search-tab">
-				<tr>
-					<th width="70"><literal>{</literal>:L('keyword')}:</th>
-					<td><input class="common-text" placeholder="关键字" name="keyword" value="" id="" type="text"></td>
-					<td><input class="btn btn-primary btn2" name="sub" value="<literal>{</literal>:L('button_search')}" type="submit"></td>
-				</tr>
-			</table>
-		</form>
-	</div>
-</div>
+<literal><include file="search" /></literal>
 
 <div class="result-wrap">
 	<form name="myform" id="myform" method="post">
